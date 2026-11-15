@@ -1,0 +1,285 @@
+/*!
+ * Custom Normalize
+ *
+ * Based on modern-normalize v3.0.1
+ * https://github.com/sindresorhus/modern-normalize
+ *
+ * modern-normalize Copyright (c) Sindre Sorhus
+ * Licensed under the MIT License.
+ *
+ * This version extends modern-normalize with additional reset rules
+ * and defaults for modern web development.
+ */
+
+
+/* ==========================================================================
+   Document
+   ========================================================================== */
+
+/**
+ * Use a more intuitive box-sizing model.
+ */
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/**
+ * 1. Use a consistent system font stack across browsers.
+ * 2. Correct the line height in all browsers.
+ * 3. Prevent automatic font-size adjustments after orientation changes in iOS.
+ * 4. Use a more readable tab size.
+ */
+
+html {
+  font-family:
+          system-ui,
+          'Segoe UI',
+          Roboto,
+          Helvetica,
+          Arial,
+          sans-serif,
+          'Apple Color Emoji',
+          'Segoe UI Emoji'; /* 1 */
+  line-height: 1.15; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 3 */
+  tab-size: 4; /* 4 */
+}
+
+
+/* ==========================================================================
+   Sections
+   ========================================================================== */
+
+/**
+ * Remove the default body margin in all browsers.
+ */
+
+body {
+  margin: 0;
+}
+
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/**
+ * Remove default margins from headings and paragraphs.
+ * Spacing should be controlled explicitly by the project styles.
+ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+/**
+ * Add the correct font weight in Chrome and Safari.
+ */
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Use a consistent monospace font stack across browsers.
+ * 2. Correct the odd 'em' font sizing in all browsers.
+ */
+
+code,
+kbd,
+samp,
+pre {
+  font-family:
+          ui-monospace,
+          SFMono-Regular,
+          Consolas,
+          'Liberation Mono',
+          Menlo,
+          monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent subscript and superscript elements from affecting
+ * the line height in all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+
+/* ==========================================================================
+   Lists
+   ========================================================================== */
+
+/**
+ * Remove default spacing and markers from ordered and unordered lists.
+ * List appearance should be controlled explicitly by project styles.
+ */
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+/**
+ * Remove the default underline from links.
+ * Link appearance should be controlled explicitly by project styles.
+ */
+
+a {
+  text-decoration: none;
+}
+
+
+/* ==========================================================================
+   Tabular data
+   ========================================================================== */
+
+/**
+ * Correct table border-color inheritance in Chrome and Safari.
+ */
+
+table {
+  border-color: currentcolor;
+}
+
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+/**
+ * 1. Normalize font styles for form controls.
+ * 2. Remove the default margin in Firefox and Safari.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+ * Correct the inability to style clickable input types
+ * in iOS and Safari.
+ */
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the default padding from legend elements.
+ */
+
+legend {
+  padding: 0;
+}
+
+/**
+ * Correct vertical alignment in Chrome and Firefox.
+ */
+
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Correct the cursor style of increment and decrement
+ * buttons in Safari.
+ */
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the appearance of search inputs in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+[type='search'] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Remove the inner padding of search inputs
+ * in Chrome and Safari on macOS.
+ */
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style file upload buttons in iOS and Safari.
+ * 2. Inherit font properties in Safari.
+ */
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+
+/* ==========================================================================
+   Interactive
+   ========================================================================== */
+
+/**
+ * Use the correct display value for summary elements
+ * in Chrome and Safari.
+ */
+
+summary {
+  display: list-item;
+}
