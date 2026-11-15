@@ -7,7 +7,7 @@
     <meta name="description" content="Личный список задач на каждый день." />
     <title>Сегодня — Task Manager</title>
     <link rel="stylesheet" href="src/styles/styles.css" />
-    <script src="src/js/main.js" defer></script>
+    <script type="module" src="src/js/main.js"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">К задачам</a>
@@ -225,7 +225,7 @@
           <button
             class="todo__add"
             type="button"
-            data-js-add-task="main"
+            data-js-add-task
             aria-haspopup="dialog"
             aria-controls="task-modal"
           >
@@ -260,6 +260,7 @@
             class="icon-button task-form__close"
             type="button"
             aria-label="Закрыть окно добавления задачи"
+            title="Закрыть окно добавления задачи"
             data-js-modal-close
           >
             <span aria-hidden="true">×</span>

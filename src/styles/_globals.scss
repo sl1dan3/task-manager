@@ -2,6 +2,10 @@
 
 html {
   color-scheme: dark;
+
+  &:has(dialog:modal) {
+    overflow: hidden;
+  }
 }
 
 body {
