@@ -31,7 +31,7 @@
 html {
   font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"; /* 1 */
   line-height: 1.15; /* 2 */
-  -webkit-text-size-adjust: 100%; /* 3 */
+  text-size-adjust: 100%; /* 3 */
   tab-size: 4; /* 4 */
 }
 
@@ -170,7 +170,7 @@ button,
 [type=button],
 [type=reset],
 [type=submit] {
-  -webkit-appearance: button;
+  appearance: auto;
 }
 
 /**
@@ -201,7 +201,7 @@ progress {
  * 2. Correct the outline style in Safari.
  */
 [type=search] {
-  -webkit-appearance: textfield; /* 1 */
+  appearance: textfield; /* 1 */
   outline-offset: -2px; /* 2 */
 }
 
@@ -210,7 +210,7 @@ progress {
  * in Chrome and Safari on macOS.
  */
 ::-webkit-search-decoration {
-  -webkit-appearance: none;
+  appearance: none;
 }
 
 /**
@@ -218,7 +218,7 @@ progress {
  * 2. Inherit font properties in Safari.
  */
 ::-webkit-file-upload-button {
-  -webkit-appearance: button; /* 1 */
+  appearance: auto; /* 1 */
   font: inherit; /* 2 */
 }
 
@@ -258,7 +258,8 @@ body {
   line-height: 1.5;
 }
 
-button, input {
+button,
+input {
   font: inherit;
 }
 

@@ -48,6 +48,9 @@
   padding: 0 !important;
   white-space: nowrap !important;
   clip-path: inset(100%) !important;
+
+  // Preserve the legacy fallback alongside clip-path.
+  // stylelint-disable-next-line property-no-deprecated
   clip: rect(0 0 0 0) !important;
   overflow: hidden !important;
 }

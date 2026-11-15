@@ -1,2 +1,8 @@
 @use '../helpers' as *;
-.icon { @include square(rem(24)); flex-shrink: 0; vertical-align: middle; }
+
+.icon {
+  @include square(rem(24));
+
+  flex-shrink: 0;
+  vertical-align: middle;
+}

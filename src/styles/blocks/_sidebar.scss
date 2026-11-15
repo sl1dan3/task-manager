@@ -1,4 +1,5 @@
 @use '../helpers' as *;
+
 .sidebar {
   position: sticky;
   top: 0;
@@ -7,10 +8,30 @@
   overflow-y: auto;
   padding: rem(20) rem(14);
   background: var(--color-panel);
-  &__header { display: flex; align-items: center; justify-content: space-between; min-height: rem(44); margin-bottom: rem(24); padding-inline: rem(12); }
-  &__brand { color: var(--color-accent); .icon { @include square(rem(32)); } }
-  &__close { display: none; }
-  &__add, &__nav-button {
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: rem(44);
+    margin-bottom: rem(24);
+    padding-inline: rem(12);
+  }
+
+  &__brand {
+    color: var(--color-accent);
+
+    .icon {
+      @include square(rem(32));
+    }
+  }
+
+  &__close {
+    display: none;
+  }
+
+  &__add,
+  &__nav-button {
     display: flex;
     align-items: center;
     gap: rem(12);
@@ -22,13 +43,41 @@
     background: transparent;
     text-align: left;
     overflow-wrap: anywhere;
-    @include hover { &:not(:disabled) { background: var(--color-hover); } }
+
+    @include hover {
+      &:not(:disabled) {
+        background: var(--color-hover);
+      }
+    }
   }
-  &__add { margin-bottom: rem(18); font-weight: 600; color: var(--color-accent); .icon { border-radius: 50%; background: var(--color-accent); color: var(--color-panel); } }
+
+  &__add {
+    margin-bottom: rem(18);
+    font-weight: 600;
+    color: var(--color-accent);
+
+    .icon {
+      border-radius: 50%;
+      background: var(--color-accent);
+      color: var(--color-panel);
+    }
+  }
+
   &__nav-button {
-    .icon { color: var(--color-muted); }
-    &--active { background: var(--color-active); color: var(--color-accent); .icon { color: inherit; } }
+    .icon {
+      color: var(--color-muted);
+    }
+
+    &--active {
+      background: var(--color-active);
+      color: var(--color-accent);
+
+      .icon {
+        color: inherit;
+      }
+    }
   }
+
   @include mobile {
     position: fixed;
     inset: 0 auto 0 0;
@@ -36,7 +85,14 @@
     width: min(300px, calc(100% - 32px));
     visibility: hidden;
     transform: translateX(-100%);
-    &--open { visibility: visible; transform: translateX(0); }
-    &__close { display: inline-flex; }
+
+    &--open {
+      visibility: visible;
+      transform: translateX(0);
+    }
+
+    &__close {
+      display: inline-flex;
+    }
   }
 }

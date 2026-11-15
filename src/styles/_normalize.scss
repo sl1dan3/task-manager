@@ -11,7 +11,6 @@
  * and defaults for modern web development.
  */
 
-
 /* ==========================================================================
    Document
    ========================================================================== */
@@ -35,19 +34,13 @@
 
 html {
   font-family:
-          system-ui,
-          'Segoe UI',
-          Roboto,
-          Helvetica,
-          Arial,
-          sans-serif,
-          'Apple Color Emoji',
-          'Segoe UI Emoji'; /* 1 */
+    system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji'; /* 1 */
+
   line-height: 1.15; /* 2 */
-  -webkit-text-size-adjust: 100%; /* 3 */
+  text-size-adjust: 100%; /* 3 */
   tab-size: 4; /* 4 */
 }
-
 
 /* ==========================================================================
    Sections
@@ -60,7 +53,6 @@ html {
 body {
   margin: 0;
 }
-
 
 /* ==========================================================================
    Typography
@@ -100,12 +92,8 @@ kbd,
 samp,
 pre {
   font-family:
-          ui-monospace,
-          SFMono-Regular,
-          Consolas,
-          'Liberation Mono',
-          Menlo,
-          monospace; /* 1 */
+    ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace; /* 1 */
+
   font-size: 1em; /* 2 */
 }
 
@@ -138,7 +126,6 @@ sup {
   top: -0.5em;
 }
 
-
 /* ==========================================================================
    Lists
    ========================================================================== */
@@ -155,7 +142,6 @@ ol {
   list-style: none;
 }
 
-
 /* ==========================================================================
    Links
    ========================================================================== */
@@ -169,7 +155,6 @@ a {
   text-decoration: none;
 }
 
-
 /* ==========================================================================
    Tabular data
    ========================================================================== */
@@ -181,7 +166,6 @@ a {
 table {
   border-color: currentcolor;
 }
-
 
 /* ==========================================================================
    Forms
@@ -212,7 +196,7 @@ button,
 [type='button'],
 [type='reset'],
 [type='submit'] {
-  -webkit-appearance: button;
+  appearance: auto;
 }
 
 /**
@@ -247,7 +231,7 @@ progress {
  */
 
 [type='search'] {
-  -webkit-appearance: textfield; /* 1 */
+  appearance: textfield; /* 1 */
   outline-offset: -2px; /* 2 */
 }
 
@@ -257,7 +241,7 @@ progress {
  */
 
 ::-webkit-search-decoration {
-  -webkit-appearance: none;
+  appearance: none;
 }
 
 /**
@@ -266,10 +250,9 @@ progress {
  */
 
 ::-webkit-file-upload-button {
-  -webkit-appearance: button; /* 1 */
+  appearance: auto; /* 1 */
   font: inherit; /* 2 */
 }
-
 
 /* ==========================================================================
    Interactive

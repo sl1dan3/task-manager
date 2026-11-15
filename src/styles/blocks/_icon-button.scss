@@ -1,6 +1,8 @@
 @use '../helpers' as *;
+
 .icon-button {
   @include square(rem(44));
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -10,5 +12,11 @@
   border-radius: rem(6);
   background: transparent;
   color: var(--color-muted);
-  @include hover { &:not(:disabled) { background: var(--color-hover); color: var(--color-text); } }
+
+  @include hover {
+    &:not(:disabled) {
+      background: var(--color-hover);
+      color: var(--color-text);
+    }
+  }
 }

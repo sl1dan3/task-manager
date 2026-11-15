@@ -1,6 +1,9 @@
 @use 'helpers' as *;
 
-.visually-hidden { @include visually-hidden; }
+.visually-hidden {
+  @include visually-hidden;
+}
+
 .skip-link {
   position: fixed;
   top: rem(8);
@@ -10,5 +13,8 @@
   background: var(--color-heading);
   color: var(--color-bg);
   transform: translateY(-160%);
-  &:focus { transform: translateY(0); }
+
+  &:focus {
+    transform: translateY(0);
+  }
 }

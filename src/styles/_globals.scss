@@ -1,6 +1,9 @@
 @use 'helpers' as *;
 
-html { color-scheme: dark; }
+html {
+  color-scheme: dark;
+}
+
 body {
   background: var(--color-bg);
   color: var(--color-text);
@@ -8,8 +11,27 @@ body {
   font-size: rem(16);
   line-height: 1.5;
 }
-button, input { font: inherit; }
-button { color: inherit; cursor: pointer; }
-button:disabled { opacity: .45; cursor: not-allowed; }
-:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
-[hidden] { display: none !important; }
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+[hidden] {
+  display: none !important;
+}
