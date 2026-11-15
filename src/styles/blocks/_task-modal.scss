@@ -1,0 +1,19 @@
+@use '../helpers' as *;
+
+.task-modal {
+  width: min(rem(540), calc(100% - rem(32)));
+  max-width: none;
+  max-height: calc(100dvh - rem(32));
+  margin: auto;
+  padding: 0;
+  overflow-y: auto;
+  border: 1px solid var(--color-border);
+  border-radius: rem(14);
+  background: var(--color-panel);
+  color: var(--color-text);
+  box-shadow: 0 rem(24) rem(80) #0006;
+
+  &::backdrop {
+    background: #0009;
+  }
+}

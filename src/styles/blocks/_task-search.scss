@@ -1,0 +1,54 @@
+@use '../helpers' as *;
+
+.task-search {
+  margin-bottom: rem(24);
+
+  &__label {
+    display: block;
+    margin-bottom: rem(8);
+    color: var(--color-muted);
+    font-size: rem(14);
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    gap: rem(8);
+  }
+
+  &__input {
+    flex: 1;
+    min-width: 0;
+    min-height: rem(44);
+    padding: rem(10) rem(12);
+    border: 1px solid var(--color-border);
+    border-radius: rem(6);
+    background: var(--color-panel);
+    color: var(--color-text);
+
+    &::placeholder {
+      color: var(--color-muted);
+    }
+
+    &:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+  }
+
+  &__clear {
+    flex-shrink: 0;
+    min-height: rem(44);
+    padding: rem(8);
+    border: 1px solid var(--color-border);
+    border-radius: rem(6);
+    background: transparent;
+    font-size: rem(14);
+
+    @include hover {
+      &:not(:disabled) {
+        background: var(--color-hover);
+      }
+    }
+  }
+}

@@ -31,6 +31,17 @@
     gap: rem(2);
   }
 
+  &__delete {
+    color: var(--color-accent);
+
+    @include hover {
+      &:not(:disabled) {
+        background: var(--color-active);
+        color: var(--color-accent);
+      }
+    }
+  }
+
   &--completed &__title {
     text-decoration: line-through;
     color: var(--color-muted);

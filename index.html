@@ -83,7 +83,13 @@
             </svg>
           </button>
         </div>
-        <button class="sidebar__add" type="button" data-js-add-task="sidebar">
+        <button
+          class="sidebar__add"
+          type="button"
+          data-js-add-task="sidebar"
+          aria-haspopup="dialog"
+          aria-controls="task-modal"
+        >
           <svg
             class="icon"
             width="24"
@@ -99,35 +105,12 @@
             <path d="M12 5v14M5 12h14" /></svg
           ><span>Добавить задачу</span>
         </button>
-        <nav aria-label="Разделы и фильтры задач">
+        <nav aria-label="Разделы задач">
           <ul class="sidebar__nav">
             <li>
-              <button
-                class="sidebar__nav-button"
-                type="button"
-                data-js-nav="search"
-              >
-                <svg
-                  class="icon"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.6"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <circle cx="10.5" cy="10.5" r="7.5" />
-                  <path d="m16 16 5 5" /></svg
-                ><span>Поиск</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="sidebar__nav-button"
-                type="button"
+              <a
+                class="sidebar__nav-link"
+                href="inbox.html"
                 data-js-nav="inbox"
               >
                 <svg
@@ -144,12 +127,12 @@
                 >
                   <path d="m5 4-3 12v4h20v-4L19 4ZM2 16h6l2 3h4l2-3h6" /></svg
                 ><span>Входящие</span>
-              </button>
+              </a>
             </li>
             <li>
-              <button
-                class="sidebar__nav-button sidebar__nav-button--active"
-                type="button"
+              <a
+                class="sidebar__nav-link sidebar__nav-link--active"
+                href="index.html"
                 data-js-nav="today"
                 aria-current="page"
               >
@@ -168,57 +151,7 @@
                   <rect x="3" y="5" width="18" height="16" rx="2" />
                   <path d="M7 3v4M17 3v4M3 10h18M8 15h3v3H8z" /></svg
                 ><span>Сегодня</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="sidebar__nav-button"
-                type="button"
-                data-js-nav="upcoming"
-              >
-                <svg
-                  class="icon"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.6"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <rect x="3" y="3" width="18" height="18" rx="2" />
-                  <path
-                    d="M7 7h1m3 0h1m3 0h1M7 12h1m3 0h1m3 0h1M7 17h1m3 0h1m3 0h1"
-                  /></svg
-                ><span>Предстоящее</span>
-              </button>
-            </li>
-            <li>
-              <button
-                class="sidebar__nav-button"
-                type="button"
-                data-js-nav="filters"
-              >
-                <svg
-                  class="icon"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.6"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <rect x="3" y="3" width="6" height="6" rx="1" />
-                  <rect x="15" y="3" width="6" height="6" rx="1" />
-                  <rect x="3" y="15" width="6" height="6" rx="1" />
-                  <rect x="15" y="15" width="6" height="6" rx="1" /></svg
-                ><span>Фильтры и метки</span>
-              </button>
+              </a>
             </li>
           </ul>
         </nav>
@@ -254,6 +187,30 @@
               >
             </p>
           </header>
+          <form class="task-search" role="search" data-js-search-form>
+            <label class="task-search__label" for="task-search"
+              >Поиск задач</label
+            >
+            <div class="task-search__controls">
+              <input
+                class="task-search__input"
+                id="task-search"
+                name="query"
+                type="search"
+                placeholder="Найти задачу"
+                autocomplete="off"
+                data-js-search-input
+              />
+              <button
+                class="task-search__clear"
+                type="reset"
+                aria-label="Очистить поиск"
+                data-js-search-clear
+              >
+                Сбросить
+              </button>
+            </div>
+          </form>
           <ul
             class="todo__list"
             aria-label="Список задач"
@@ -265,7 +222,13 @@
               Добавьте первую задачу, чтобы начать день с плана.
             </p>
           </div>
-          <button class="todo__add" type="button" data-js-add-task="main">
+          <button
+            class="todo__add"
+            type="button"
+            data-js-add-task="main"
+            aria-haspopup="dialog"
+            aria-controls="task-modal"
+          >
             <svg
               class="icon"
               width="24"
@@ -281,49 +244,96 @@
               <path d="M12 5v14M5 12h14" /></svg
             ><span>Добавить задачу</span>
           </button>
-          <form
-            class="task-form"
-            hidden
-            data-js-todo-form
-            aria-labelledby="task-form-title"
-            novalidate
-          >
-            <h2 class="task-form__title" id="task-form-title">Новая задача</h2>
-            <label class="task-form__label" for="task-title"
-              >Название задачи</label
-            >
-            <input
-              class="task-form__input"
-              id="task-title"
-              name="title"
-              type="text"
-              placeholder="Что нужно сделать?"
-              required
-              aria-describedby="task-error"
-              data-js-task-input
-            />
-            <p
-              class="task-form__error"
-              id="task-error"
-              aria-live="polite"
-              data-js-task-error
-            ></p>
-            <div class="task-form__actions">
-              <button class="button" type="button" data-js-form-cancel>
-                Отмена
-              </button>
-              <button
-                class="button button--primary"
-                type="submit"
-                data-js-form-submit
-              >
-                Добавить
-              </button>
-            </div>
-          </form>
         </div>
       </main>
     </div>
+    <dialog
+      class="task-modal"
+      id="task-modal"
+      aria-labelledby="task-form-title"
+      data-js-task-modal
+    >
+      <form class="task-form" data-js-todo-form novalidate>
+        <header class="task-form__header">
+          <h2 class="task-form__title" id="task-form-title">Новая задача</h2>
+          <button
+            class="icon-button task-form__close"
+            type="button"
+            aria-label="Закрыть окно добавления задачи"
+            data-js-modal-close
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+        </header>
+        <div class="task-form__field">
+          <label class="task-form__label" for="task-title"
+            >Название задачи
+            <span class="task-form__required" aria-hidden="true">*</span></label
+          >
+          <input
+            class="task-form__input"
+            id="task-title"
+            name="title"
+            type="text"
+            placeholder="Что нужно сделать?"
+            required
+            autofocus
+            aria-describedby="task-error"
+            data-js-task-input
+          />
+          <p
+            class="task-form__error"
+            id="task-error"
+            aria-live="polite"
+            data-js-task-error
+          ></p>
+        </div>
+        <div class="task-form__row">
+          <div class="task-form__field">
+            <label class="task-form__label" for="task-priority"
+              >Приоритет</label
+            >
+            <select
+              class="task-form__input"
+              id="task-priority"
+              name="priority"
+              data-js-task-priority
+            >
+              <option value="none">Без приоритета</option>
+              <option value="high">Высокий</option>
+              <option value="medium">Средний</option>
+              <option value="low">Низкий</option>
+            </select>
+          </div>
+          <div class="task-form__field">
+            <label class="task-form__label" for="task-deadline">Дедлайн</label>
+            <input
+              class="task-form__input"
+              id="task-deadline"
+              name="dueDate"
+              type="date"
+              aria-describedby="task-deadline-hint"
+              data-js-task-deadline
+            />
+            <p class="task-form__hint" id="task-deadline-hint">
+              Можно оставить без даты
+            </p>
+          </div>
+        </div>
+        <footer class="task-form__actions">
+          <button class="button" type="button" data-js-form-cancel>
+            Отмена
+          </button>
+          <button
+            class="button button--primary"
+            type="submit"
+            data-js-form-submit
+          >
+            Добавить
+          </button>
+        </footer>
+      </form>
+    </dialog>
     <template data-js-todo-template>
       <li class="todo-item" data-js-todo-item>
         <input
@@ -356,7 +366,7 @@
             </svg>
           </button>
           <button
-            class="icon-button"
+            class="icon-button todo-item__delete"
             type="button"
             aria-label="Удалить задачу"
             data-js-task-delete

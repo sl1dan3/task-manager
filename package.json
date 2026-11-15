@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "sass src/styles/styles.scss src/styles/styles.css",
-    "dev": "sass --watch src/styles/styles.scss:src/styles/styles.css",
+    "build": "sass src/styles/styles.scss:src/styles/styles.css src/styles/inbox.scss:src/styles/inbox.css",
+    "dev": "sass --watch src/styles/styles.scss:src/styles/styles.css src/styles/inbox.scss:src/styles/inbox.css",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "stylelint \"src/styles/**/*.scss\"",

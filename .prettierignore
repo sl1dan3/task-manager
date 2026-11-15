@@ -3,3 +3,4 @@ package-lock.json
 src/styles/styles.css
 *.css.map
 README.md
+src/styles/inbox.css

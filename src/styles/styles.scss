@@ -1,12 +1,2 @@
-@use 'normalize';
-@use 'variables';
-@use 'globals';
-@use 'utils';
-@use 'blocks/icon';
-@use 'blocks/icon-button';
-@use 'blocks/button';
-@use 'blocks/app';
-@use 'blocks/sidebar';
-@use 'blocks/todo';
-@use 'blocks/todo-item';
-@use 'blocks/task-form';
+// Styles for the Today page.
+@use 'shared';
