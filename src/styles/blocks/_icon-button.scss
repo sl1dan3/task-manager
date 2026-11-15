@@ -1,0 +1,14 @@
+@use '../helpers' as *;
+.icon-button {
+  @include square(rem(44));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: rem(10);
+  border: 0;
+  border-radius: rem(6);
+  background: transparent;
+  color: var(--color-muted);
+  @include hover { &:not(:disabled) { background: var(--color-hover); color: var(--color-text); } }
+}

@@ -1,0 +1,14 @@
+@use 'helpers' as *;
+
+.visually-hidden { @include visually-hidden; }
+.skip-link {
+  position: fixed;
+  top: rem(8);
+  left: rem(8);
+  z-index: 100;
+  padding: rem(8) rem(16);
+  background: var(--color-heading);
+  color: var(--color-bg);
+  transform: translateY(-160%);
+  &:focus { transform: translateY(0); }
+}

@@ -1,0 +1,14 @@
+@use '../helpers' as *;
+.task-form {
+  margin-top: rem(16);
+  padding: rem(20);
+  border: 1px solid var(--color-border);
+  border-radius: rem(10);
+  background: var(--color-panel);
+  &__title { margin-bottom: rem(18); font-size: rem(18); color: var(--color-heading); }
+  &__label { display: block; margin-bottom: rem(8); font-size: rem(14); }
+  &__input { width: 100%; min-width: 0; padding: rem(12); border: 1px solid #666; border-radius: rem(6); background: var(--color-bg); color: var(--color-text); &[aria-invalid='true'] { border-color: var(--color-accent); } &::placeholder { color: var(--color-muted); } &:disabled { opacity: .5; cursor: not-allowed; } }
+  &__error { margin-top: rem(8); color: var(--color-accent); font-size: rem(14); overflow-wrap: anywhere; &:empty { display: none; } }
+  &__actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: rem(8); margin-top: rem(20); }
+  @include mobile-s { padding: rem(14); }
+}

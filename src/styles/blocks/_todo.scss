@@ -1,0 +1,30 @@
+@use '../helpers' as *;
+.todo {
+  min-width: 0;
+  padding: rem(76) fluid(80, 24) rem(48);
+  &__inner { max-width: rem(900); margin-inline: auto; }
+  &__header { margin-bottom: rem(36); }
+  &__title { margin-bottom: rem(10); font-size: rem(30); line-height: 1.25; color: var(--color-heading); }
+  &__summary { display: flex; align-items: center; gap: rem(8); color: var(--color-muted); font-size: rem(14); .icon { @include square(rem(18)); } }
+  &__list { min-width: 0; }
+  &__empty { padding: rem(12) 0 rem(24); }
+  &__empty-title { margin-bottom: rem(6); font-size: rem(16); font-weight: 500; }
+  &__empty-text { max-width: rem(420); color: var(--color-muted); font-size: rem(14); }
+  &__add {
+    display: flex;
+    align-items: center;
+    gap: rem(12);
+    width: 100%;
+    min-height: rem(48);
+    padding: rem(12) 0;
+    border: 0;
+    border-top: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-muted);
+    text-align: left;
+    .icon { color: var(--color-accent); }
+    @include hover { &:not(:disabled) { color: var(--color-accent); } }
+  }
+  @include mobile { padding: rem(32) rem(24); &__title { font-size: rem(26); } }
+  @include mobile-s { padding-inline: rem(16); }
+}

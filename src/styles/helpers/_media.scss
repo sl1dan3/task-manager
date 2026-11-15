@@ -1,6 +1,7 @@
 @use "./functions" as *;
 
-// Breakpoints: adjust these values to match the project's design.
+// Keep the existing breakpoints: tablet narrows the sidebar,
+// mobile switches to a drawer, mobile-s reduces spacing for 320px screens.
 $laptop: 1440.98;
 $tablet: 1023.98;
 $mobile: 767.98;
