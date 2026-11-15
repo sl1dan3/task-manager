@@ -1,0 +1,14 @@
+# npm
+node_modules/
+*.log
+
+# Editors
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Sass source maps
+*.css.map
