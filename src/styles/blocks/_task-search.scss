@@ -1,54 +1,56 @@
 @use '../helpers' as *;
 
 .task-search {
-  margin-bottom: rem(24);
+  margin-bottom: rem(16);
 
   &__label {
-    display: block;
-    margin-bottom: rem(8);
-    color: var(--color-muted);
-    font-size: rem(14);
+    @include visually-hidden;
   }
 
   &__controls {
     display: flex;
     align-items: center;
-    gap: rem(8);
+    gap: rem(10);
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    color: var(--color-muted);
   }
 
   &__input {
     flex: 1;
     min-width: 0;
-    min-height: rem(44);
-    padding: rem(10) rem(12);
-    border: 1px solid var(--color-border);
+    min-height: rem(40);
+    padding: rem(8) rem(10);
+    border: 1px solid transparent;
     border-radius: rem(6);
-    background: var(--color-panel);
+    background: transparent;
     color: var(--color-text);
+    font-size: rem(13);
 
     &::placeholder {
       color: var(--color-muted);
     }
 
-    &:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
+    &:focus {
+      background: var(--color-panel);
+      border-color: var(--color-border);
     }
   }
 
   &__clear {
-    flex-shrink: 0;
-    min-height: rem(44);
-    padding: rem(8);
-    border: 1px solid var(--color-border);
+    min-height: rem(40);
+    padding: rem(8) rem(10);
+    border: 0;
     border-radius: rem(6);
     background: transparent;
-    font-size: rem(14);
+    color: var(--color-muted);
+    font-size: rem(12);
 
     @include hover {
-      &:not(:disabled) {
-        background: var(--color-hover);
-      }
+      background: var(--color-hover);
+      color: var(--color-text);
     }
   }
 }

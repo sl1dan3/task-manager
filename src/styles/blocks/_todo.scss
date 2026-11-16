@@ -2,82 +2,154 @@
 
 .todo {
   min-width: 0;
-  padding: rem(76) fluid(80, 24) rem(48);
+
+  &__topbar {
+    display: flex;
+    justify-content: space-between;
+    gap: rem(16);
+    padding: rem(22) fluid(40, 20);
+    border-bottom: 1px solid var(--color-border);
+    font-size: rem(12);
+    color: var(--color-muted);
+  }
+
+  &__breadcrumb-separator {
+    margin-inline: rem(12);
+    color: var(--color-border);
+  }
+
+  &__workspace-label {
+    font-size: rem(11);
+  }
 
   &__inner {
-    max-width: rem(900);
+    max-width: rem(960);
     margin-inline: auto;
+    padding: rem(64) fluid(56, 20);
   }
 
   &__header {
-    margin-bottom: rem(36);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: rem(20);
+    margin-bottom: rem(32);
+  }
+
+  &__heading-group {
+    flex: 1;
+    min-width: rem(200);
+  }
+
+  &__eyebrow {
+    margin-bottom: rem(8);
+    font-size: rem(11);
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    color: var(--color-accent);
   }
 
   &__title {
-    margin-bottom: rem(10);
     font-size: rem(30);
-    line-height: 1.25;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    font-weight: 650;
     color: var(--color-heading);
   }
 
+  &__description {
+    margin-top: rem(10);
+    font-size: rem(13);
+    color: var(--color-muted);
+  }
+
   &__summary {
+    order: 3;
     display: flex;
     align-items: center;
     gap: rem(8);
+    width: 100%;
+    margin-top: rem(16);
+    font-size: rem(12);
     color: var(--color-muted);
-    font-size: rem(14);
 
     .icon {
-      @include square(rem(18));
+      @include square(rem(16));
     }
   }
 
   &__list {
-    min-width: 0;
+    border-top: 1px solid var(--color-border);
   }
 
   &__empty {
-    padding: rem(12) 0 rem(24);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: rem(68) rem(20) rem(80);
+    text-align: center;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  &__empty-icon {
+    box-sizing: content-box;
+    padding: rem(18);
+    margin-bottom: rem(22);
+    border: 1px solid var(--color-border);
+    border-radius: rem(24);
+    background: var(--color-panel);
+    color: var(--color-accent);
   }
 
   &__empty-title {
-    margin-bottom: rem(6);
     font-size: rem(16);
-    font-weight: 500;
+    font-weight: 600;
+    color: var(--color-heading);
   }
 
   &__empty-text {
-    max-width: rem(420);
+    max-width: rem(300);
+    margin-top: rem(8);
+    font-size: rem(13);
+    line-height: 1.7;
     color: var(--color-muted);
-    font-size: rem(14);
   }
 
   &__add {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: rem(12);
-    width: 100%;
-    min-height: rem(48);
-    padding: rem(12) 0;
-    border: 0;
-    border-top: 1px solid var(--color-border);
-    background: transparent;
-    color: var(--color-muted);
-    text-align: left;
+    justify-content: center;
+    gap: rem(8);
+    min-height: rem(40);
+    padding: rem(10) rem(14);
+    border: 1px solid transparent;
+    border-radius: rem(7);
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    font-size: rem(12);
+    font-weight: 600;
 
     .icon {
-      color: var(--color-accent);
+      @include square(rem(16));
     }
 
     @include hover {
-      &:not(:disabled) {
-        color: var(--color-accent);
-      }
+      background: color-mix(in srgb, var(--color-accent), black 12%);
     }
   }
 
   @include mobile {
-    padding: rem(32) rem(24);
+    &__topbar {
+      padding: rem(16) rem(20);
+    }
+
+    &__workspace-label {
+      display: none;
+    }
+
+    &__inner {
+      padding-top: rem(32);
+    }
 
     &__title {
       font-size: rem(26);
@@ -85,6 +157,22 @@
   }
 
   @include mobile-s {
-    padding-inline: rem(16);
+    &__header {
+      gap: rem(16);
+    }
+
+    &__heading-group {
+      flex-basis: 100%;
+    }
+
+    &__summary {
+      width: auto;
+      margin: 0;
+      margin-left: auto;
+    }
+
+    &__empty {
+      padding: rem(48) rem(8);
+    }
   }
 }

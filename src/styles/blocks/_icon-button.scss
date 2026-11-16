@@ -13,6 +13,11 @@
   background: transparent;
   color: var(--color-muted);
 
+  &:active:not(:disabled) {
+    background: var(--color-active);
+    color: var(--color-accent);
+  }
+
   @include hover {
     &:not(:disabled) {
       background: var(--color-hover);

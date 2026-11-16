@@ -5,8 +5,16 @@
   align-items: flex-start;
   gap: rem(12);
   min-width: 0;
-  padding-block: rem(12);
+  padding: rem(6) rem(4);
   border-bottom: 1px solid var(--color-border);
+
+  @include hover(false) {
+    background: var(--color-panel);
+  }
+
+  &:focus-within {
+    background: var(--color-panel);
+  }
 
   @supports (interpolate-size: allow-keywords) {
     interpolate-size: allow-keywords;
@@ -42,11 +50,39 @@
   }
 
   &__checkbox {
-    @include square(rem(22));
+    @include square(rem(18));
 
     flex-shrink: 0;
-    margin-top: rem(11);
-    accent-color: var(--color-accent);
+    margin-top: rem(13);
+    appearance: none;
+    border: 1.5px solid var(--color-muted);
+    border-radius: 50%;
+    background: var(--color-bg);
+
+    &:checked {
+      border-color: var(--color-accent);
+      background: var(--color-accent);
+
+      &::after {
+        content: '';
+        display: block;
+        width: rem(8);
+        height: rem(5);
+        margin: rem(4) auto;
+        border-left: 1.5px solid var(--color-on-accent);
+        border-bottom: 1.5px solid var(--color-on-accent);
+        transform: rotate(-45deg);
+      }
+    }
+
+    @media (forced-colors: active) {
+      appearance: auto;
+
+      &::after {
+        display: none;
+      }
+    }
+
     cursor: pointer;
   }
 
@@ -77,24 +113,24 @@
 
   &__priority {
     padding: rem(2) rem(8);
-    border: 1px solid currentcolor;
+    border: 1px solid var(--color-border);
     border-radius: rem(4);
     color: var(--color-muted);
     overflow-wrap: anywhere;
 
     &.is-priority-high {
-      background: #f16d631a;
-      color: #ff938a;
+      background: color-mix(in srgb, var(--color-danger), transparent 93%);
+      color: var(--color-danger);
     }
 
     &.is-priority-medium {
-      background: #edb95f1a;
-      color: #edc17a;
+      background: color-mix(in srgb, var(--color-warning), transparent 93%);
+      color: var(--color-warning);
     }
 
     &.is-priority-low {
-      background: #79b8ff1a;
-      color: #91c4ff;
+      background: color-mix(in srgb, var(--color-info), transparent 93%);
+      color: var(--color-info);
     }
   }
 
@@ -105,7 +141,7 @@
     color: var(--color-muted);
 
     &.is-overdue {
-      color: #ff938a;
+      color: var(--color-danger);
     }
   }
 
@@ -113,10 +149,14 @@
     display: flex;
     flex-shrink: 0;
     gap: rem(2);
+
+    .icon {
+      @include square(rem(16));
+    }
   }
 
   &__delete {
-    color: var(--color-accent);
+    color: var(--color-muted);
 
     @include hover {
       &:not(:disabled) {

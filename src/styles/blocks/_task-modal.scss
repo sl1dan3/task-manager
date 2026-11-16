@@ -1,7 +1,7 @@
 @use '../helpers' as *;
 
 .task-modal {
-  width: min(rem(540), calc(100% - rem(32)));
+  width: min(rem(520), calc(100% - rem(32)));
   max-width: none;
   max-height: calc(100dvh - rem(32));
   margin: auto;
@@ -11,9 +11,9 @@
   border-radius: rem(14);
   background: var(--color-panel);
   color: var(--color-text);
-  box-shadow: 0 rem(24) rem(80) #0006;
+  box-shadow: 0 rem(24) rem(80) var(--color-overlay);
 
   &::backdrop {
-    background: #0009;
+    background: var(--color-overlay);
   }
 }
