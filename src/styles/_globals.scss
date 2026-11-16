@@ -14,6 +14,10 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: rem(14);
   line-height: 1.5;
+
+  &.is-scroll-locked {
+    overflow: hidden;
+  }
 }
 
 button,

@@ -1,5 +1,7 @@
-import ModalTask from "./modal-task.js";
-import Tasks from "./tasks.js";
+import ModalTask from "./ModalTask.js";
+import Tasks from "./Tasks.js";
+import BurgerMenu from "./BurgerMenu.js";
 
 new ModalTask();
 new Tasks();
+new BurgerMenu();

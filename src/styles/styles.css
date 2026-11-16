@@ -265,6 +265,9 @@ body {
   font-size: 0.875rem;
   line-height: 1.5;
 }
+body.is-scroll-locked {
+  overflow: hidden;
+}
 
 button,
 input,
