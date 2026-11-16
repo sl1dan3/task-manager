@@ -131,7 +131,7 @@
             </li>
             <li>
               <a
-                class="sidebar__nav-link sidebar__nav-link--active"
+                class="sidebar__nav-link is-active"
                 href="index.html"
                 data-js-nav="today"
                 aria-current="page"
@@ -181,10 +181,11 @@
                 aria-hidden="true"
               >
                 <circle cx="12" cy="12" r="9" />
-                <path d="m8 12 3 3 5-6" /></svg
-              ><span data-js-todo-count aria-live="polite" aria-atomic="true"
-                >0 задач</span
-              >
+                <path d="m8 12 3 3 5-6" />
+              </svg>
+              <span aria-live="polite" aria-atomic="true">
+                Задач: <span data-js-todo-count>0</span>
+              </span>
             </p>
           </header>
           <form class="task-search" role="search" data-js-search-form>
@@ -341,9 +342,25 @@
           class="todo-item__checkbox"
           type="checkbox"
           aria-label="Отметить задачу выполненной"
+          title="Отметить задачу выполненной"
           data-js-task-toggle
         />
-        <span class="todo-item__title" data-js-task-title></span>
+        <div class="todo-item__content">
+          <span class="todo-item__title" data-js-task-title></span>
+          <div class="todo-item__meta">
+            <span
+              class="todo-item__priority is-hidden"
+              data-js-item-priority
+            ></span>
+            <span class="todo-item__deadline is-hidden" data-js-item-deadline>
+              <span>Срок:</span>
+              <time data-js-item-due-date></time>
+              <span class="todo-item__overdue-label is-hidden" data-js-item-overdue
+                >Просрочено</span
+              >
+            </span>
+          </div>
+        </div>
         <div class="todo-item__actions">
           <button
             class="icon-button"

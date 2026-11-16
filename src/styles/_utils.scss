@@ -1,5 +1,9 @@
 @use 'helpers' as *;
 
+.is-hidden {
+  display: none !important;
+}
+
 .visually-hidden {
   @include visually-hidden;
 }

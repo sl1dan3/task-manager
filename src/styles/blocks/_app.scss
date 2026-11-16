@@ -41,7 +41,7 @@
       background: #0009;
     }
 
-    &:has(.sidebar--open) &__backdrop {
+    &:has(.sidebar.is-open) &__backdrop {
       display: block;
     }
   }
