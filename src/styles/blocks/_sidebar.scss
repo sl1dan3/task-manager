@@ -148,3 +148,17 @@
     }
   }
 }
+
+.sidebar__theme-icon--sun {
+  display: none;
+}
+
+html[data-theme='dark'] {
+  .sidebar__theme-icon--moon {
+    display: none;
+  }
+
+  .sidebar__theme-icon--sun {
+    display: block;
+  }
+}
