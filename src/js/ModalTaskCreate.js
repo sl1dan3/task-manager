@@ -1,4 +1,4 @@
-class ModalTask {
+class ModalTaskCreate {
     selectors = {
         modal: "[data-js-task-modal]",
         openModalButton: "[data-js-add-task]",
@@ -49,4 +49,4 @@ class ModalTask {
     }
 }
 
-export default ModalTask;
+export default ModalTaskCreate;
