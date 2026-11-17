@@ -47,21 +47,7 @@
     display: none;
   }
 
-  &__section-label {
-    margin: rem(28) rem(10) rem(10);
-    color: var(--color-muted);
-    font-size: rem(11);
-    font-weight: 600;
-    letter-spacing: 0.4px;
-  }
-
-  &__nav {
-    display: grid;
-    gap: rem(4);
-  }
-
   &__add,
-  &__nav-link,
   &__theme-toggle {
     display: flex;
     align-items: center;
@@ -94,12 +80,6 @@
     .icon {
       color: var(--color-accent);
     }
-  }
-
-  &__nav-link.is-active {
-    background: var(--color-active);
-    color: var(--color-accent);
-    font-weight: 600;
   }
 
   &__theme-toggle {

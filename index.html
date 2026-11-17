@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light" />
     <meta name="description" content="Личный список задач на каждый день." />
-    <title>Сегодня — Task Manager</title>
+    <title>Мои задачи — Task Manager</title>
     <link rel="stylesheet" href="src/styles/styles.css" />
     <script type="module" src="src/js/main.js"></script>
   </head>
@@ -41,7 +41,7 @@
       <aside
         class="sidebar"
         id="sidebar"
-        aria-label="Панель навигации"
+        aria-label="Панель задач"
         data-js-sidebar
       >
         <div class="sidebar__header">
@@ -105,57 +105,6 @@
             <path d="M12 5v14M5 12h14" /></svg
           ><span>Добавить задачу</span>
         </button>
-        <p class="sidebar__section-label">Рабочее пространство</p>
-        <nav aria-label="Разделы задач">
-          <ul class="sidebar__nav">
-            <li>
-              <a
-                class="sidebar__nav-link"
-                href="inbox.html"
-                data-js-nav="inbox"
-              >
-                <svg
-                  class="icon"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.6"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="m5 4-3 12v4h20v-4L19 4ZM2 16h6l2 3h4l2-3h6" /></svg
-                ><span>Входящие</span>
-              </a>
-            </li>
-            <li>
-              <a
-                class="sidebar__nav-link is-active"
-                href="index.html"
-                data-js-nav="today"
-                aria-current="page"
-              >
-                <svg
-                  class="icon"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.6"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <rect x="3" y="5" width="18" height="16" rx="2" />
-                  <path d="M7 3v4M17 3v4M3 10h18M8 15h3v3H8z" /></svg
-                ><span>Сегодня</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
         <button
           class="sidebar__theme-toggle"
           type="button"
@@ -205,16 +154,14 @@
       ></button>
       <main class="todo" id="main" tabindex="-1">
         <div class="todo__topbar">
-          <span
-            >Мои задачи
-            <span class="todo__breadcrumb-separator">/</span> Сегодня</span
+          <span>Мои задачи</span
           ><span class="todo__workspace-label">Личное пространство</span>
         </div>
         <div class="todo__inner">
           <header class="todo__header">
             <div class="todo__heading-group">
               <p class="todo__eyebrow">Фокус на главном</p>
-              <h1 class="todo__title" data-js-heading>Сегодня</h1>
+              <h1 class="todo__title" data-js-heading>Мои задачи</h1>
               <p class="todo__description">
                 Освободите мысли. Начните с одной задачи.
               </p>
@@ -299,6 +246,45 @@
               </button>
             </div>
           </form>
+          <div class="task-filters" role="group" aria-label="Фильтр задач">
+            <button
+              class="task-filters__button is-active"
+              type="button"
+              data-js-task-filter="all"
+              aria-pressed="true"
+            >
+              <span>Все</span>
+              <span class="task-filters__count" data-js-task-filter-count="all"
+                >0</span
+              >
+            </button>
+            <button
+              class="task-filters__button"
+              type="button"
+              data-js-task-filter="active"
+              aria-pressed="false"
+            >
+              <span>Активные</span>
+              <span
+                class="task-filters__count"
+                data-js-task-filter-count="active"
+                >0</span
+              >
+            </button>
+            <button
+              class="task-filters__button"
+              type="button"
+              data-js-task-filter="completed"
+              aria-pressed="false"
+            >
+              <span>Выполненные</span>
+              <span
+                class="task-filters__count"
+                data-js-task-filter-count="completed"
+                >0</span
+              >
+            </button>
+          </div>
           <ul
             class="todo__list"
             aria-label="Список задач"
@@ -318,9 +304,9 @@
               <rect x="10" y="8" width="28" height="34" rx="6" />
               <path d="M18 8V5h12v3M17 22l4 4 10-10M18 33h12" />
             </svg>
-            <p class="todo__empty-title">На сегодня задач пока нет</p>
-            <p class="todo__empty-text">
-              Добавьте первую задачу, чтобы начать день с плана.
+            <p class="todo__empty-title" data-js-empty-title>Задач пока нет</p>
+            <p class="todo__empty-text" data-js-empty-description>
+              Добавьте первую задачу, чтобы начать
             </p>
           </div>
         </div>
@@ -414,6 +400,98 @@
         </footer>
       </form>
     </dialog>
+    <dialog
+      class="task-modal"
+      id="edit-task-modal"
+      aria-labelledby="edit-task-form-title"
+      data-js-edit-modal
+    >
+      <form class="task-form" data-js-edit-form novalidate>
+        <header class="task-form__header">
+          <h2 class="task-form__title" id="edit-task-form-title">
+            Редактировать задачу
+          </h2>
+          <button
+            class="icon-button task-form__close"
+            type="button"
+            aria-label="Закрыть окно редактирования задачи"
+            title="Закрыть окно редактирования задачи"
+            data-js-edit-close
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+        </header>
+        <div class="task-form__field">
+          <label class="task-form__label" for="edit-task-title"
+            >Название задачи
+            <span class="task-form__required" aria-hidden="true">*</span></label
+          >
+          <input
+            class="task-form__input"
+            id="edit-task-title"
+            name="title"
+            type="text"
+            placeholder="Что нужно сделать?"
+            required
+            autofocus
+            aria-describedby="edit-task-error"
+            data-js-edit-input
+          />
+          <p
+            class="task-form__error"
+            id="edit-task-error"
+            aria-live="polite"
+            data-js-edit-error
+          ></p>
+        </div>
+        <div class="task-form__row">
+          <div class="task-form__field">
+            <label class="task-form__label" for="edit-task-priority"
+              >Приоритет</label
+            >
+            <select
+              class="task-form__input"
+              id="edit-task-priority"
+              name="priority"
+              data-js-edit-priority
+            >
+              <option value="none">Без приоритета</option>
+              <option value="low">Низкий</option>
+              <option value="medium">Средний</option>
+              <option value="high">Высокий</option>
+            </select>
+          </div>
+          <div class="task-form__field">
+            <label class="task-form__label" for="edit-task-deadline"
+              >Срок выполнения</label
+            >
+            <input
+              class="task-form__input"
+              id="edit-task-deadline"
+              name="dueDate"
+              type="date"
+              aria-describedby="edit-task-deadline-hint"
+              data-js-edit-deadline
+            />
+            <p class="task-form__hint" id="edit-task-deadline-hint">
+              Можно оставить без даты
+            </p>
+          </div>
+        </div>
+        <footer class="task-form__actions">
+          <button class="button" type="button" data-js-edit-cancel>
+            Отмена
+          </button>
+          <button
+            class="button button--primary"
+            type="submit"
+            data-js-edit-submit
+          >
+            Сохранить
+          </button>
+        </footer>
+      </form>
+    </dialog>
     <template data-js-todo-template>
       <li class="todo-item" data-js-todo-item>
         <input
@@ -446,6 +524,8 @@
             class="icon-button"
             type="button"
             aria-label="Редактировать задачу"
+            aria-haspopup="dialog"
+            aria-controls="edit-task-modal"
             data-js-task-edit
           >
             <svg
