@@ -14,6 +14,10 @@ class Tasks {
     taskCounter: '[data-js-todo-count]',
     taskEmptyState: '[data-js-empty-state]',
 
+    // Поиск(фильтрация)
+    searchForm: "[data-js-search-form]",
+    searchFormInput: "[data-js-search-input]",
+
     // Элементы внутри клонированной строки
     item: '[data-js-todo-item]',
     itemTitle: '[data-js-task-title]',
@@ -45,6 +49,8 @@ class Tasks {
     this.taskPriorityElement = this.rootElement.querySelector(selectors.taskPriority);
     this.taskDeadlineElement = this.rootElement.querySelector(selectors.taskDeadline);
     this.taskErrorMessageElement = this.rootElement.querySelector(selectors.taskErrorMessage);
+    this.searchFormElement = document.querySelector(selectors.searchForm);
+    this.searchFormInputElement = document.querySelector(selectors.searchFormInput);
 
     this.taskTemplateElement = document.querySelector(selectors.taskTemplate);
     this.listElement = document.querySelector(selectors.list);
@@ -53,6 +59,8 @@ class Tasks {
 
     this.state = {
       tasks: this.getTasksFromLocalStorage(),
+      filteredTasks: null,
+      searchQuery: "",
     };
 
     this.render();
@@ -98,9 +106,24 @@ class Tasks {
     }
   }
 
-  // Полностью строим список только при загрузке страницы.
+  getFilteredTasks() {
+    const queryFormatted = this.state.searchQuery.trim().toLowerCase();
+
+    return this.state.filteredTasks = this.state.tasks.filter(({title}) => {
+      const titleFormatted = title.toLowerCase();
+
+      return titleFormatted.includes(queryFormatted);
+    })
+  }
+
+  resetFilter() {
+    this.state.searchQuery = "";
+    this.searchFormInputElement.value = '';
+    this.render();
+  }
+
   render() {
-    const items = this.state.tasks.map((task) => this.createTaskElement(task));
+    const items = this.getFilteredTasks().map(task => this.createTaskElement(task));
     this.listElement.replaceChildren(...items);
     this.updateSummary();
   }
@@ -159,10 +182,12 @@ class Tasks {
   }
 
   updateSummary() {
-    this.taskCounterElement.textContent = String(this.state.tasks.length);
+    const tasksCount = this.state.filteredTasks.length;
+
+    this.taskCounterElement.textContent = tasksCount;
     this.taskEmptyStateElement.classList.toggle(
-      this.stateClasses.isHidden,
-      this.state.tasks.length > 0,
+        this.stateClasses.isHidden,
+        tasksCount
     );
   }
 
@@ -179,7 +204,7 @@ class Tasks {
 
     const task = {
       id: crypto.randomUUID() ?? Date.now().toString(),
-      title,
+      title: title.trim(),
       priority: this.taskPriorityElement.value,
       dueDate: this.taskDeadlineElement.value,
       completed: false,
@@ -190,22 +215,21 @@ class Tasks {
     if (!this.saveTasksToLocalStorage(tasks)) return;
 
     this.state.tasks = tasks;
-    this.listElement.append(this.createTaskElement(task));
-    this.updateSummary();
+    this.render();
+
     this.taskErrorMessageElement.textContent = '';
     this.taskNameInputElement.removeAttribute('aria-invalid');
     this.rootElement.reset();
     this.modalElement.close();
   };
 
-  deleteTask(id, item) {
+  deleteTask(id) {
       const tasks = this.state.tasks.filter(task => task.id !== id);
 
       if (!this.saveTasksToLocalStorage(tasks)) return;
 
       this.state.tasks = tasks;
-      item.remove();
-      this.updateSummary();
+      this.render();
   }
 
   toggleTaskCompleted(id, completed, item) {
@@ -245,13 +269,33 @@ class Tasks {
       if (!deleteButtonElement) return;
 
       const taskElement = deleteButtonElement.closest(this.selectors.item);
-      this.deleteTask(taskElement.dataset.taskId, taskElement);
+      this.deleteTask(taskElement.dataset.taskId);
+  }
+
+  onSearchFormInputChange = (event) => {
+    const { target } = event;
+
+    const inputValue = target.value.trim();
+
+    if (inputValue.length > 0) {
+      this.state.searchQuery = inputValue;
+      this.render();
+    } else {
+      this.resetFilter();
+    }
+  }
+
+  onSearchFormSubmit = (event) => {
+    event.preventDefault();
   }
 
   bindEvents() {
     this.rootElement.addEventListener('submit', this.onFormSubmit);
     this.listElement.addEventListener('click', this.onDeleteTaskButton);
     this.listElement.addEventListener('change', this.onTaskCheckboxChange);
+    this.searchFormElement.addEventListener('submit', this.onSearchFormSubmit);
+    this.searchFormElement.addEventListener("reset", () => this.resetFilter());
+    this.searchFormInputElement.addEventListener('input', this.onSearchFormInputChange);
   }
 }
 
