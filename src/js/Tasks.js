@@ -40,9 +40,10 @@ class Tasks {
 
   localStorageKey = 'todo-tasks';
 
-  constructor() {
+  constructor(modalEdit) {
     const { selectors } = this;
 
+    this.modalTaskEdit = modalEdit;
     this.rootElement = document.querySelector(selectors.root);
     this.modalElement = document.querySelector(selectors.modal);
     this.taskNameInputElement = this.rootElement.querySelector(selectors.taskNameInput);

@@ -5,7 +5,7 @@ import ThemeSwitcher from "./ThemeSwitcher.js";
 import ModalTaskEdit from "./ModalTaskEdit.js";
 
 new ModalTaskCreate();
-new Tasks();
 new BurgerMenu();
 new ThemeSwitcher();
-new ModalTaskEdit();
+const modalTaskEdit = new ModalTaskEdit();
+const tasks = new Tasks(modalTaskEdit);
