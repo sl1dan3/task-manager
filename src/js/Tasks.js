@@ -48,10 +48,12 @@ class Tasks {
 
   localStorageKey = 'todo-tasks';
 
-  constructor(modalEdit) {
+  constructor(modalEdit, tabs) {
     const { selectors } = this;
 
     this.modalTaskEdit = modalEdit;
+    this.tabs = tabs;
+    this.tabs.onChange = () => this.render();
 
     this.rootElement = document.querySelector(selectors.root);
     this.modalElement = document.querySelector(selectors.modal);
@@ -126,7 +128,7 @@ class Tasks {
   getFilteredTasks() {
     const queryFormatted = this.state.searchQuery.trim().toLowerCase();
 
-    return this.state.filteredTasks = this.state.tasks.filter(({title}) => {
+    return this.state.filteredTasks = this.tabs.filterTasks(this.state.tasks).filter(({title}) => {
       const titleFormatted = title.toLowerCase();
 
       return titleFormatted.includes(queryFormatted);
@@ -140,6 +142,7 @@ class Tasks {
   }
 
   render() {
+    this.tabs.updateCounts(this.state.tasks);
     const items = this.getFilteredTasks().map(task => this.createTaskElement(task));
     this.listElement.replaceChildren(...items);
     this.updateSummary();
@@ -264,7 +267,7 @@ class Tasks {
       }
 
       this.state.tasks = tasks;
-      this.updateTaskState(item, updatedTask);
+      this.render();
   }
 
   onTaskCheckboxChange = (event) => {
