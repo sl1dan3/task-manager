@@ -8,15 +8,23 @@ class Tasks {
     taskDeadline: '[data-js-task-deadline]',
     taskErrorMessage: '[data-js-task-error]',
 
+    // Поиск(фильтрация)
+    searchForm: "[data-js-search-form]",
+    searchFormInput: "[data-js-search-input]",
+
+    //Редактирование
+    taskEditButton: "[data-js-task-edit]",
+    editForm: '[data-js-edit-form]',
+    editInput: '[data-js-edit-input]',
+    editPriority: '[data-js-edit-priority]',
+    editDeadline: '[data-js-edit-deadline]',
+    editError: '[data-js-edit-error]',
+
     // Список
     taskTemplate: '[data-js-todo-template]',
     list: '[data-js-todo-list]',
     taskCounter: '[data-js-todo-count]',
     taskEmptyState: '[data-js-empty-state]',
-
-    // Поиск(фильтрация)
-    searchForm: "[data-js-search-form]",
-    searchFormInput: "[data-js-search-input]",
 
     // Элементы внутри клонированной строки
     item: '[data-js-todo-item]',
@@ -44,6 +52,7 @@ class Tasks {
     const { selectors } = this;
 
     this.modalTaskEdit = modalEdit;
+
     this.rootElement = document.querySelector(selectors.root);
     this.modalElement = document.querySelector(selectors.modal);
     this.taskNameInputElement = this.rootElement.querySelector(selectors.taskNameInput);
@@ -52,6 +61,13 @@ class Tasks {
     this.taskErrorMessageElement = this.rootElement.querySelector(selectors.taskErrorMessage);
     this.searchFormElement = document.querySelector(selectors.searchForm);
     this.searchFormInputElement = document.querySelector(selectors.searchFormInput);
+
+    this.editFormElement = document.querySelector(selectors.editForm);
+    this.editInputElement = this.editFormElement.querySelector(selectors.editInput);
+    this.editPriorityElement = this.editFormElement.querySelector(selectors.editPriority);
+    this.editDeadlineElement = this.editFormElement.querySelector(selectors.editDeadline);
+    this.editErrorElement = this.editFormElement.querySelector(selectors.editError);
+    this.editingTaskId = null;
 
     this.taskTemplateElement = document.querySelector(selectors.taskTemplate);
     this.listElement = document.querySelector(selectors.list);
@@ -290,6 +306,73 @@ class Tasks {
     event.preventDefault();
   }
 
+  onTaskEditButtonClick = (event) => {
+    const { target } = event;
+
+    const taskEditButtonElement = target.closest(this.selectors.taskEditButton);
+    if (!taskEditButtonElement) return;
+
+    const taskElement = taskEditButtonElement.closest(this.selectors.item);
+
+    const taskElementInfo = this.state.tasks.find(task =>
+        task.id === taskElement.dataset.taskId);
+
+    if (!taskElementInfo) return;
+
+    this.editingTaskId = taskElementInfo.id;
+
+    this.editInputElement.value = taskElementInfo.title;
+    this.editPriorityElement.value = taskElementInfo.priority;
+    this.editDeadlineElement.value = taskElementInfo.dueDate;
+
+    this.editErrorElement.textContent = "";
+    this.editInputElement.removeAttribute('aria-invalid');
+
+    this.modalTaskEdit.open();
+  }
+
+  onEditFormSubmit = (event) => {
+    event.preventDefault();
+
+    const taskTitleFormatted = this.editInputElement.value.trim();
+
+    if (taskTitleFormatted.length === 0) {
+      this.editErrorElement.textContent = 'Название задачи не может быть пустым';
+      this.editInputElement.setAttribute('aria-invalid', 'true');
+      this.editInputElement.focus();
+
+      return;
+    }
+
+    this.editErrorElement.textContent = '';
+    this.editInputElement.removeAttribute('aria-invalid');
+
+    const updatedTasks = this.state.tasks.map(task => {
+      if (task.id !== this.editingTaskId) {
+        return task;
+      }
+
+      return {
+        ...task,
+        title: taskTitleFormatted,
+        priority: this.editPriorityElement.value,
+        dueDate: this.editDeadlineElement.value,
+      }
+    })
+
+    if (!this.saveTasksToLocalStorage(updatedTasks)) return;
+
+    this.state.tasks = updatedTasks;
+
+    this.render();
+
+    this.modalTaskEdit.close();
+  }
+
+  onModalTaskEditClose = () => {
+    this.editingTaskId = null;
+  }
+
   bindEvents() {
     this.rootElement.addEventListener('submit', this.onFormSubmit);
     this.listElement.addEventListener('click', this.onDeleteTaskButton);
@@ -297,6 +380,9 @@ class Tasks {
     this.searchFormElement.addEventListener('submit', this.onSearchFormSubmit);
     this.searchFormElement.addEventListener("reset", () => this.resetFilter());
     this.searchFormInputElement.addEventListener('input', this.onSearchFormInputChange);
+    this.listElement.addEventListener("click", this.onTaskEditButtonClick);
+    this.editFormElement.addEventListener('submit', this.onEditFormSubmit);
+    this.modalTaskEdit.rootElement.addEventListener("close", this.onModalTaskEditClose);
   }
 }
 
