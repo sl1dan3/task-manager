@@ -12,6 +12,3 @@ Thumbs.db
 
 # Sass source maps
 *.css.map
-
-# Local documentation
-/README.md
